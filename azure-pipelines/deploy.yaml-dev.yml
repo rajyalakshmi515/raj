@@ -12,7 +12,13 @@ pr: none
 variables:
   - name: functions-path
     value: "src/functions"
-  - name: terraform-path
+  - name: - task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
     value: "src/infrastructure"
 
   - name: appName
